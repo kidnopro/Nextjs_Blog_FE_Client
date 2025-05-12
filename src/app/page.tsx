@@ -1,3 +1,4 @@
+import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import './globals.css'
 import { Poppins } from 'next/font/google'
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )
