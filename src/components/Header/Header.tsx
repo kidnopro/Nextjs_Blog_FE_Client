@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const Header: React.FC = () => {
+export default function Header() {
   return (
     <header>
       <div className='bg-gray-900 p-2.5 flex justify-between items-center'>
@@ -32,5 +32,3 @@ const Header: React.FC = () => {
     </header>
   )
 }
-
-export default Header

@@ -1,8 +1,7 @@
 'use client'
-
 import React from 'react'
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
     <footer>
       <div className='bg-gray-900 text-white flex items-center justify-center h-[50px]'>
@@ -14,9 +13,9 @@ const Footer: React.FC = () => {
             viewBox='0 0 24 24'
             fill='none'
             stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
             //   class='lucide lucide-at-sign-icon lucide-at-sign'
           >
             <circle cx='12' cy='12' r='4' />
@@ -28,5 +27,3 @@ const Footer: React.FC = () => {
     </footer>
   )
 }
-
-export default Footer
