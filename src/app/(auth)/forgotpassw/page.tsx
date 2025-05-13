@@ -1,30 +1,41 @@
 'use client'
 
+import { fortgotPassSchema } from '@/core/schema/auth'
+import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<fortgotPassSchema>({
+    resolver: zodResolver(fortgotPassSchema)
+  })
+
+  const onSubmit = (data: fortgotPassSchema) => {
+    console.log(data)
+  }
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-100'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-        <h2 className='mt-10 text-center text-2xl/9  tracking-tight text-gray-900'>Forgot account password</h2>
+        <h2 className='mt-10 text-center text-2xl/9  tracking-tight text-gray-900'>Quên mật khẩu tài khoản</h2>
       </div>
 
       <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-        <form action='#' method='POST' className='space-y-6'>
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div>
             <label htmlFor='email' className='block text-sm/6 font-medium text-gray-900'>
-              Email address
+              Địa chỉ Email
             </label>
             <div className='mt-1'>
               <input
-                id='email'
-                name='email'
+                {...register('email')}
                 placeholder='Email'
-                type='email'
-                required
-                autoComplete='email'
                 className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
               />
+              {errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>}
             </div>
           </div>
 
@@ -33,17 +44,17 @@ export default function Login() {
               type='submit'
               className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
             >
-              Send now
+              Gửi ngay
             </button>
           </div>
         </form>
 
         <div className='mt-10 flex justify-between items-center text-sm text-gray-500 '>
           <Link href='/login' className='font-semibold text-indigo-600 hover:underline'>
-            Login to your account
+            Đăng nhập tài khoản
           </Link>
           <a href='/register' className='font-semibold text-indigo-600 hover:underline'>
-            Register now
+            Đăng ký tài khoản mới
           </a>
         </div>
       </div>

@@ -1,8 +1,22 @@
 'use client'
 
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { loginSchema } from '@/core/schema/auth'
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<loginSchema>({
+    resolver: zodResolver(loginSchema)
+  })
+
+  const onSubmit = (data: LoginSchema) => {
+    console.log(data)
+  }
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-100'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
@@ -10,21 +24,18 @@ export default function Login() {
       </div>
 
       <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-        <form action='#' method='POST' className='space-y-6'>
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div>
             <label htmlFor='email' className='block text-sm/6 font-medium text-gray-900'>
               Địa chỉ email
             </label>
             <div className='mt-1'>
               <input
-                id='email'
-                name='email'
+                {...register('email')}
                 placeholder='Email'
-                type='email'
-                required
-                autoComplete='email'
                 className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
               />
+              {errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>}
             </div>
           </div>
 
@@ -36,14 +47,11 @@ export default function Login() {
             </div>
             <div className='mt-1'>
               <input
-                id='password'
-                name='password'
-                type='password'
+                {...register('password')}
                 placeholder='********'
-                required
-                autoComplete='current-password'
                 className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
               />
+              {errors.password && <p className='text-red-500 text-sm mt-1'>{errors.password.message}</p>}
             </div>
           </div>
 
