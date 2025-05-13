@@ -52,13 +52,13 @@ export default function Login() {
               type='submit'
               className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
             >
-              Sign in
+              Log in
             </button>
           </div>
         </form>
 
         <div className='mt-10 flex justify-between items-center text-sm text-gray-500 '>
-          <Link href='/forgot-pass' className='font-semibold text-indigo-600 hover:underline'>
+          <Link href='/forgotpassw' className='font-semibold text-indigo-600 hover:underline'>
             Forgot password?
           </Link>
           <a href='/register' className='font-semibold text-indigo-600 hover:underline'>

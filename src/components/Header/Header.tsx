@@ -45,32 +45,32 @@ export default function Header() {
             <Link
               href='/'
               className={`font-poppins text-base ${
-                pathname === '/' ? 'text-red-500 ' : 'text-white'
-              } hover:text-red-500 transition duration-200`}
+                pathname === '/' ? 'text-blue-500 ' : 'text-white'
+              } hover:text-blue-500 transition duration-200`}
             >
               Forums
             </Link>
             <Link
               href='/whats-new'
               className={`font-poppins text-base ${
-                pathname === '/whats-new' ? 'text-red-500 ' : 'text-white'
-              } hover:text-red-500 transition duration-200`}
+                pathname === '/whats-new' ? 'text-blue-500 ' : 'text-white'
+              } hover:text-blue-500 transition duration-200`}
             >
               Latests
             </Link>
             <Link
               href='/login'
               className={`font-poppins text-base ${
-                pathname === '/login' ? 'text-red-500 ' : 'text-white'
-              } hover:text-red-500 transition duration-200`}
+                pathname === '/login' ? 'text-blue-500 ' : 'text-white'
+              } hover:text-blue-500 transition duration-200`}
             >
               Log in
             </Link>
             <Link
               href='/register'
               className={`font-poppins text-base ${
-                pathname === '/register' ? 'text-red-500 ' : 'text-white'
-              } hover:text-red-500 transition duration-200`}
+                pathname === '/register' ? 'text-blue-500 ' : 'text-white'
+              } hover:text-blue-500 transition duration-200`}
             >
               Register
             </Link>
