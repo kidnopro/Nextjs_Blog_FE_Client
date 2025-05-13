@@ -1,8 +1,6 @@
 'use client'
 
-import React from 'react'
-
-const NotFound: React.FC = () => {
+export default function NotFound() {
   return (
     <div className='flex items-center justify-center h-screen bg-gray-100'>
       <div className='text-center'>
@@ -18,5 +16,3 @@ const NotFound: React.FC = () => {
     </div>
   )
 }
-
-export default NotFound

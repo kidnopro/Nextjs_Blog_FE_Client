@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
+// Cấu hình font chữ Poppins
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap'
 })
 
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
   },
   description: 'KidBlog is a blog platform to learn and share their thoughts.',
   icons: {
-    icon: './favicon.svg'
+    icon: '/favicon.svg'
   }
 }
 
@@ -27,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={`${geistSans.variable} ${geistSans.variable} antialiased`}>
+    <html lang='en' className={poppins.className}>
+      <body>
         <Header />
         {children}
         <Footer />
