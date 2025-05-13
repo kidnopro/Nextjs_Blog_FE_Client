@@ -48,7 +48,7 @@ export default function Header() {
                 pathname === '/' ? 'text-blue-500 ' : 'text-white'
               } hover:text-blue-500 transition duration-200`}
             >
-              Forums
+              Diễn đàn
             </Link>
             <Link
               href='/whats-new'
@@ -56,7 +56,7 @@ export default function Header() {
                 pathname === '/whats-new' ? 'text-blue-500 ' : 'text-white'
               } hover:text-blue-500 transition duration-200`}
             >
-              Latests
+              Tin mới
             </Link>
             <Link
               href='/login'
@@ -64,7 +64,7 @@ export default function Header() {
                 pathname === '/login' ? 'text-blue-500 ' : 'text-white'
               } hover:text-blue-500 transition duration-200`}
             >
-              Log in
+              Đăng nhập
             </Link>
             <Link
               href='/register'
@@ -72,7 +72,7 @@ export default function Header() {
                 pathname === '/register' ? 'text-blue-500 ' : 'text-white'
               } hover:text-blue-500 transition duration-200`}
             >
-              Register
+              Đăng ký
             </Link>
           </div>
         </nav>
