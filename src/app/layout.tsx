@@ -14,10 +14,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
   title: {
-    template: '%s - KidBlog',
-    default: 'KidBlog'
+    template: '%s - Kid chát chít',
+    default: 'Kid chát chít'
   },
-  description: 'KidBlog is a blog platform to learn and share their thoughts.',
+  description: 'KidBlog chát chít là một nền tảng xã hội, giúp bạn tìm kiếm bạn đời',
   icons: {
     icon: '/favicon.svg'
   }
