@@ -13,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <header className='bg-gray-900 p-3.5 px-12'>
+    <header className='bg-black p-3.5 px-28 sticky top-0 z-50'>
       <div className='container mx-auto flex justify-between items-center flex-wrap'>
         <Link href='/' className='text-white text-3xl font-bold font-poppins'>
           VOZ

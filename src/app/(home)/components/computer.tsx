@@ -3,7 +3,7 @@
 import React from 'react'
 import { FaBell, FaCommentDots, FaNewspaper, FaStar, FaBook } from 'react-icons/fa'
 
-const Sidebar = () => {
+const Computer = () => {
   const categories = [
     {
       name: 'Thông báo',
@@ -54,7 +54,7 @@ const Sidebar = () => {
 
   return (
     <aside className='w-full bg-black p-4 shadow-lg px-28 '>
-      <h2 className='text-xl font-semibold text-blue-700 mb-4'>Đại sảnh</h2>
+      <h2 className='text-xl font-semibold text-blue-700 mb-4'>Máy tính</h2>
       <ul className='space-y-2'>
         {categories.map((category, index) => (
           <li
@@ -81,4 +81,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Computer

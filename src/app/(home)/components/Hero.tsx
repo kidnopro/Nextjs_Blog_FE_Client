@@ -1,9 +1,13 @@
-import React from 'react'
+import Link from 'next/link'
 
-type Props = {}
-
-const Hero = (props: Props) => {
-  return <div className='h-[30dvh] bg-zinc-500 text-white grid place-items-center text-3xl'>Hero</div>
+const Hero = () => {
+  return (
+    <div className='h-[35px] bg-black text-blue-400 font-medium flex items-center px-28'>
+      <Link href='/post/create' className='hover:underline transition duration-300 z-30 ease-in-out'>
+        Đăng bài mới
+      </Link>
+    </div>
+  )
 }
 
 export default Hero
