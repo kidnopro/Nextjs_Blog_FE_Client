@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { AuroraText } from '@/components/magicui/aurora-text'
 
 export default function Header() {
   const pathname = usePathname()
@@ -12,16 +14,43 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const navItems = [
+    { href: '/login', label: 'Đăng nhập' },
+    { href: '/register', label: 'Đăng ký' }
+  ]
+
+  const menuVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3, ease: 'easeOut' }
+    },
+    closed: {
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.3, ease: 'easeIn' }
+    }
+  }
+
   return (
-    <header className='bg-black p-3.5 px-28 sticky top-0 z-50'>
-      <div className='container mx-auto flex justify-between items-center flex-wrap'>
-        <Link href='/' className='text-white text-3xl font-bold font-poppins'>
-          VOZ
+    <header className='bg-gradient-to-b from-gray-900 to-black p-4 lg:px-28 sticky top-0 z-50 shadow-lg'>
+      <div className='container mx-auto flex justify-between items-center'>
+        <Link href='/' className='text-white text-2xl font-extrabold font-poppins tracking-tight'>
+          <motion.span whileHover={{ scale: 1.05 }} className=''>
+            Code{' '}
+            <i>
+              <AuroraText> Farm</AuroraText>
+            </i>
+          </motion.span>
         </Link>
 
-        <button className='sm:hidden text-white focus:outline-none' onClick={toggleMenu}>
+        <button
+          className='lg:hidden text-white focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2'
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Đóng menu' : 'Mở menu'}
+        >
           <svg
-            className='w-6 h-6'
+            className='w-7 h-7'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -32,50 +61,54 @@ export default function Header() {
               strokeLinejoin='round'
               strokeWidth='2'
               d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
-            ></path>
+            />
           </svg>
         </button>
 
-        <nav
-          className={`w-full sm:w-auto sm:flex sm:items-center ${
-            isMenuOpen ? 'block' : 'hidden'
-          } sm:block mt-2 sm:mt-0`}
-        >
-          <div className='flex flex-col sm:flex-row sm:space-x-5 space-y-2 sm:space-y-0'>
+        <nav className='hidden lg:flex items-center space-x-8'>
+          {navItems.map((item) => (
             <Link
-              href='/'
-              className={`font-poppins text-base ${
-                pathname === '/' ? 'text-blue-500 ' : 'text-white'
-              } hover:text-blue-500 transition duration-200`}
+              key={item.href}
+              href={item.href}
+              className={`font-poppins text-base font-medium transition-all duration-300 ${
+                pathname === item.href
+                  ? 'text-blue-400 border-b-2 border-blue-400'
+                  : 'text-gray-200 hover:text-blue-400 hover:border-b-2 hover:border-blue-400'
+              } py-2 px-1`}
             >
-              Diễn đàn
+              <motion.span whileHover={{ y: -2 }}>{item.label}</motion.span>
             </Link>
-            <Link
-              href='/whats-new'
-              className={`font-poppins text-base ${
-                pathname === '/whats-new' ? 'text-blue-500 ' : 'text-white'
-              } hover:text-blue-500 transition duration-200`}
-            >
-              Tin mới
-            </Link>
-            <Link
-              href='/login'
-              className={`font-poppins text-base ${
-                pathname === '/login' ? 'text-blue-500 ' : 'text-white'
-              } hover:text-blue-500 transition duration-200`}
-            >
-              Đăng nhập
-            </Link>
-            <Link
-              href='/register'
-              className={`font-poppins text-base ${
-                pathname === '/register' ? 'text-blue-500 ' : 'text-white'
-              } hover:text-blue-500 transition duration-200`}
-            >
-              Đăng ký
-            </Link>
-          </div>
+          ))}
         </nav>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.nav
+              initial='closed'
+              animate='open'
+              exit='closed'
+              variants={menuVariants}
+              className='lg:hidden absolute top-full left-0 right-0 bg-gray-900 shadow-xl mt-2 mx-4 rounded-lg p-4'
+            >
+              <div className='flex flex-col space-y-3'>
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={toggleMenu}
+                    className={`font-poppins text-base font-medium py-2 px-3 rounded-md transition-all duration-200 ${
+                      pathname === item.href
+                        ? 'bg-blue-500 text-white'
+                        : 'text-gray-200 hover:bg-gray-800 hover:text-blue-400'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   )

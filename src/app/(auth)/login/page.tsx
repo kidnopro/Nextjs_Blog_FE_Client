@@ -1,12 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation' // Dùng useRouter thay vì window.location
 import Link from 'next/link'
-import { loginSchema } from '@/core/schema/auth'
-import { useState } from 'react'
+import { loginSchema } from '@/core/schema/auth' // Schema của bạn
+import api from '@/lib/api'
 
 export default function Login() {
+  const router = useRouter() // Để redirect
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null) // Thêm trạng thái lỗi
+
   const {
     register,
     handleSubmit,
@@ -15,25 +21,30 @@ export default function Login() {
     resolver: zodResolver(loginSchema)
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
+  // Hàm xử lý đăng nhập
   const onSubmit = async (data: loginSchema) => {
     setIsSubmitting(true)
+    setError(null) // Reset lỗi trước khi gửi request
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      console.log('Form data:', data)
-    } catch (error) {
-      console.error('Lỗi:', error)
+      const response = await api.post('/auth/login', data)
+      const { access_token } = response.data
+      localStorage.setItem('token', access_token) // Lưu token vào localStorage
+      console.log('Login success:', access_token)
+      router.push('/users') // Redirect đến trang users
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.message || 'Đăng nhập thất bại. Vui lòng thử lại.'
+      setError(errorMessage)
+      console.error('Lỗi:', err)
     } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <div className=' flex flex-col justify-center bg-gradient-to-b from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8'>
+    <div className='flex flex-col justify-center bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <h2 className='text-center text-3xl font-semibold text-gray-900 font-poppins'>Đăng nhập</h2>
-        <p className='mt-2 text-center text-sm text-gray-600 font-poppins'>
+        <h2 className='text-center text-3xl font-semibold text-white font-poppins'>Đăng nhập</h2>
+        <p className='mt-2 text-center text-sm text-white font-poppins'>
           Truy cập vào tài khoản của bạn để bắt đầu chát chít
         </p>
       </div>
@@ -41,6 +52,13 @@ export default function Login() {
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='bg-white py-8 px-6 shadow-lg rounded-lg sm:px-10'>
           <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+            {/* Hiển thị lỗi từ API (nếu có) */}
+            {error && (
+              <div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative' role='alert'>
+                <span className='block sm:inline'>{error}</span>
+              </div>
+            )}
+
             <div>
               <label htmlFor='email' className='block text-sm font-medium text-gray-700 font-poppins'>
                 Địa chỉ Email

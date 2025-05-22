@@ -1,7 +1,6 @@
 import React from 'react'
 import Hero from './components/Hero'
-import Features from './components/Features'
-import Computer from './components/computer'
+import Features from './components/users'
 
 const Page = () => {
   return (
@@ -9,7 +8,6 @@ const Page = () => {
       <main className=''>
         <Hero />
         <Features />
-        <Computer />
       </main>
     </div>
   )

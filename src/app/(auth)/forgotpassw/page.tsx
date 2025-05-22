@@ -30,12 +30,10 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className=' flex flex-col justify-center bg-gradient-to-b from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8'>
+    <div className=' flex flex-col justify-center bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <h2 className='text-center text-3xl font-semibold text-gray-900 font-poppins'>Quên mật khẩu</h2>
-        <p className='mt-2 text-center text-sm text-gray-600 font-poppins'>
-          Nhập email để nhận liên kết đặt lại mật khẩu
-        </p>
+        <h2 className='text-center text-3xl font-semibold text-white font-poppins'>Quên mật khẩu</h2>
+        <p className='mt-2 text-center text-sm text-white font-poppins'>Nhập email để nhận liên kết đặt lại mật khẩu</p>
       </div>
 
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>

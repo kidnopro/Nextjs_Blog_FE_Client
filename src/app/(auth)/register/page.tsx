@@ -30,15 +30,49 @@ export default function Register() {
   }
 
   return (
-    <div className=' flex flex-col justify-center bg-gradient-to-b from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8'>
+    <div className=' flex flex-col justify-center bg-gradient-to-b from-gray-900 to-black py-12 px-4 sm:px-6 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
-        <h2 className='text-center text-3xl font-semibold text-gray-900 '>Đăng ký tài khoản</h2>
-        <p className='mt-2 text-center text-sm text-gray-600 '>Tạo tài khoản để bắt đầu chát chít cùng bạn bè</p>
+        <h2 className='text-center text-3xl font-semibold text-white '>Đăng ký tài khoản</h2>
       </div>
 
       <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='bg-white py-8 px-6 shadow-lg rounded-lg sm:px-10'>
           <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+            <div>
+              <label htmlFor='name' className='block text-sm font-medium text-gray-700 '>
+                Họ tên
+              </label>
+              <div className='mt-1 relative'>
+                <input
+                  id='name'
+                  {...register('name')}
+                  placeholder='Nhập tên hiển thị'
+                  disabled={isSubmitting}
+                  className={`block w-full px-4 py-3 rounded-md border ${
+                    errors.name ? 'border-red-500' : 'border-gray-300'
+                  } bg-gray-50 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm  transition-all duration-200`}
+                  aria-invalid={errors.name ? 'true' : 'false'}
+                  aria-describedby='name-error'
+                />
+                {errors.name && (
+                  <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
+                    <svg className='h-5 w-5 text-red-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth='2'
+                        d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+              {errors.name && (
+                <p className='mt-2 text-sm text-red-600 ' id='name-error'>
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
             <div>
               <label htmlFor='email' className='block text-sm font-medium text-gray-700 '>
                 Địa chỉ Email
@@ -71,42 +105,6 @@ export default function Register() {
               {errors.email && (
                 <p className='mt-2 text-sm text-red-600 ' id='email-error'>
                   {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor='name' className='block text-sm font-medium text-gray-700 '>
-                Tên hiển thị
-              </label>
-              <div className='mt-1 relative'>
-                <input
-                  id='name'
-                  {...register('name')}
-                  placeholder='Nhập tên hiển thị'
-                  disabled={isSubmitting}
-                  className={`block w-full px-4 py-3 rounded-md border ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
-                  } bg-gray-50 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm  transition-all duration-200`}
-                  aria-invalid={errors.name ? 'true' : 'false'}
-                  aria-describedby='name-error'
-                />
-                {errors.name && (
-                  <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-                    <svg className='h-5 w-5 text-red-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                        d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
-              {errors.name && (
-                <p className='mt-2 text-sm text-red-600 ' id='name-error'>
-                  {errors.name.message}
                 </p>
               )}
             </div>
@@ -148,7 +146,7 @@ export default function Register() {
               )}
             </div>
 
-            <div>
+            {/* <div>
               <label htmlFor='confirmPassword' className='block text-sm font-medium text-gray-700 font-poppins'>
                 Xác nhận mật khẩu
               </label>
@@ -177,13 +175,13 @@ export default function Register() {
                     </svg>
                   </div>
                 )}
-              </div>
-              {errors.confirmPassword && (
+              </div> */}
+            {/* {errors.confirmPassword && (
                 <p className='mt-2 text-sm text-red-600 font-poppins' id='confirmPassword-error'>
                   {errors.confirmPassword.message}
                 </p>
               )}
-            </div>
+            </div> */}
 
             <div>
               <button
